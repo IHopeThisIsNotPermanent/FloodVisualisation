@@ -4,7 +4,7 @@ import math
 def dist(p1, p2):
     return math.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)
 
-class SpacialRainfall:
+class SpatialRainfall:
     """
     Note: this model for the rainfall extrapolation does not take into 
     consideration any historical data, or research about the nature of 
@@ -36,3 +36,5 @@ class SpacialRainfall:
             ret.append(min_val)
         
         return ret
+    
+    
