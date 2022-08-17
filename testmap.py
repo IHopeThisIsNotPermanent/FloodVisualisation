@@ -5,7 +5,7 @@ import folium
 app = Flask(__name__)
 
 
-@app.route('/testmap')
+@app.route('/')
 def index():
     start_coords = (-27.4705, 153.0260) ##Brisbane long/lat
     folium_map = folium.Map(location=start_coords, zoom_start=14)
