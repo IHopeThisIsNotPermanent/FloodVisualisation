@@ -40,6 +40,7 @@ def make_map(coords):
         coords = coords.split(",")
     map = folium.Map(location=coords, zoom_start=18)
     folium.Marker(location = coords, popup="Address", icon=folium.Icon(icon="glyphicon-flag")).add_to(map)
+    map.add_child(folium.LatLngPopup())
     return map
 
 if __name__ == "__main__":
