@@ -1,5 +1,5 @@
 # FloodVisualisation
-This is a flood visualisation repository for a univercity project.
+This is a flood visualisation repository for a university project.
 
 # Authors
 Eudren Chng
