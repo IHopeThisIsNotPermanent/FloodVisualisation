@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
 import folium
+from folium import GeoJson, plugins
+from folium.plugins import HeatMap
 
 app = Flask(__name__)
 
@@ -40,10 +42,28 @@ def make_map(coords):
     if coords is None:
         coords = (-27.4705, 153.0260)
     else:
-        coords = coords.split(",")
+        coords = coords.split(",")\
+
+    # Map
     map = folium.Map(location=coords, zoom_start=18)
+
+    # Marker
     folium.Marker(location = coords, popup="Address", icon=folium.Icon(icon="glyphicon-flag")).add_to(map)
     map.add_child(folium.LatLngPopup()) #click map, marker pops up showing lat/lon
+
+    # GeoJson
+    text = ""
+    with open("test.json", 'r') as f:
+        text = f.read()
+    GeoJson(text).add_to(map)
+
+    # HeatMap
+    heat_data = []
+    for lat in range(0, 100):
+        for long in range(0, 100):
+            heat_data.append([float(lat), float(long), lat/10])
+    HeatMap(heat_data).add_to(map)
+
     return map
 
 if __name__ == "__main__":
