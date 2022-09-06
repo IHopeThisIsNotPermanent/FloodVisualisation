@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import folium
 from folium import GeoJson, plugins
 from folium.plugins import HeatMap
+import logging
 
 app = Flask(__name__)
 
@@ -31,7 +32,10 @@ def test():
         test = request.form["fname"]
         return f"<h1>{test}</h1><br><img src='https://cdn.britannica.com/44/4144-004-43DD2776/Peneus-setiferus.jpg'>"
     map = make_map(None)
-    return render_template("header.html") + render_template("test.html") + map._repr_html_()
+    
+    #Saves map to a .html, for debugging purposes only
+    map.save('foliummap.html')
+    return render_template("header.html") + map._repr_html_() + render_template("test.html")
 
 @app.route("/test/<coords>")
 def test_specific(coords):
@@ -63,6 +67,19 @@ def make_map(coords):
         for long in range(0, 100):
             heat_data.append([float(lat), float(long), lat/10])
     HeatMap(heat_data).add_to(map)
+    
+    # Get map's Javascript variable name
+    map_js_name = map.get_name()
+
+    # Renders html file so injected script appears at the end
+    map.render()
+    
+    # Injects javascript
+    map.get_root().script.add_child(folium.Element(f"""
+    {map_js_name}.on("zoomend", function(){{
+        alert("User zoomed in or out");
+    }});
+    """))
 
     return map
 
