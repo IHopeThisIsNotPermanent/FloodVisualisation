@@ -2,8 +2,8 @@ from flask import Flask, render_template, request
 import folium
 from folium import GeoJson, plugins
 from folium.plugins import HeatMap
-import geopy 
-from geopy import Nominatim 
+#import geopy 
+#from geopy import Nominatim 
 
 
 app = Flask(__name__)
@@ -30,11 +30,11 @@ def charts():
 
 @app.route("/test", methods = ["POST", "GET"])
 def test():
-    locator = Nominatim(user_agent="addressLookup")
+    #locator = Nominatim(user_agent="addressLookup")
     if request.method == "POST":
         test = request.form["fname"]
-        location = locator.geocode(test)
-        //location.longitude = long, location.lat
+        #location = locator.geocode(test)
+        ##location.longitude = long, location.lat
         
         return f"<h1>{test}</h1><br><img src='https://cdn.britannica.com/44/4144-004-43DD2776/Peneus-setiferus.jpg'>"
     map = make_map(None)
