@@ -2,8 +2,8 @@ from flask import Flask, render_template, request
 import folium
 from folium import GeoJson, plugins
 from folium.plugins import HeatMap
-import geopy 
-from geopy import Nominatim 
+#import geopy 
+#from geopy import Nominatim 
 
 
 app = Flask(__name__)
