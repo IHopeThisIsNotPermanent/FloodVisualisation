@@ -30,14 +30,14 @@ def charts():
 
 @app.route("/test", methods = ["POST", "GET"])
 def test():
-    #locator = Nominatim(user_agent="addressLookup")
+    locator = Nominatim(user_agent="addressLookup")
     if request.method == "POST":
         test = request.form["fname"]
-        #location = locator.geocode(test)
+        location = locator.geocode(test)
         ##location.longitude = long, location.lat
         
         return f"<h1>{test}</h1><br><img src='https://cdn.britannica.com/44/4144-004-43DD2776/Peneus-setiferus.jpg'>"
-    map = make_map(None)
+    map = make_map((location.longitude, location.latitude))
     return render_template("header.html") + render_template("test.html") + map._repr_html_()
 
 @app.route("/test/<coords>")
