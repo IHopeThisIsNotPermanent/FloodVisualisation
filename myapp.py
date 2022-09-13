@@ -28,11 +28,20 @@ def charts():
 
 @app.route("/test", methods = ["POST", "GET"])
 def test():
-    if request.method == "POST":
+    if request.method == "POST" and request.form.get("zoom") != None:
+        # Received a zoomend event from javascript
+        logging.basicConfig(filename="zoom.txt",
+                        filemode="a",
+                        format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
+                        datefmt='%H:%M:%S',
+                        level=logging.DEBUG)
+        logging.info(f"Zoom level: {request.form.get('zoom')}")
+        logger = logging.getLogger("zoom")
+    elif request.method == "POST":
         test = request.form["fname"]
         return f"<h1>{test}</h1><br><img src='https://cdn.britannica.com/44/4144-004-43DD2776/Peneus-setiferus.jpg'>"
     map = make_map(None)
-    
+
     #Saves map to a .html, for debugging purposes only
     map.save('foliummap.html')
     return render_template("header.html") + map._repr_html_() + render_template("test.html")
@@ -69,15 +78,21 @@ def make_map(coords):
     HeatMap(heat_data).add_to(map)
     
     # Get map's Javascript variable name
-    map_js_name = map.get_name()
+    map_js = map.get_name()
 
     # Renders html file so injected script appears at the end
     map.render()
     
     # Injects javascript
     map.get_root().script.add_child(folium.Element(f"""
-    {map_js_name}.on("zoomend", function(){{
-        alert("User zoomed in or out");
+    {map_js}.on("zoomend", function(){{
+        console.log("User zoomed in or out. Zoom level: " + {map_js}.getZoom());
+        console.log($(location).attr('href')); //in theory prints out url
+        $.ajax({{
+            type : 'POST',
+            url : "http://localhost:5000/test", //replace with URL when deploying
+            data : {{zoom: {map_js}.getZoom()}}
+        }});
     }});
     """))
 
