@@ -34,15 +34,15 @@ def test():
     if request.method == "POST":
         test = request.form["fname"]
         location = locator.geocode(test)
-        ##location.longitude = long, location.lat
+        ##location.longitude = long, location.latitude
         
         return f"<h1>{test}</h1><br><img src='https://cdn.britannica.com/44/4144-004-43DD2776/Peneus-setiferus.jpg'>"
-    map = make_map(coords)
+    map = make_map("{},{}".format(location.longitude, location.latitude))
     return render_template("header.html") + render_template("test.html") + map._repr_html_()
 
-@app.route("/test/<coords>")
+@app.route("/test/<coords>") #any coords entered in url
 def test_specific(coords):
-    #map = make_map(coords)
+    map = make_map(coords)
     return render_template("header.html") + render_template("test.html") + map._repr_html_()
 
 def make_map(coords):
