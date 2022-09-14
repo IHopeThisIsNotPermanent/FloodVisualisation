@@ -35,15 +35,10 @@ def test():
         test = request.form["fname"]
         location = locator.geocode(test)
         ##location.longitude = long, location.latitude
-        map = make_map("{},{}".format(location.longitude, location.latitude))
+        #map = make_map("{},{}".format(location.longitude, location.latitude))
         return f"<h1>{test}</h1><br><img src='https://cdn.britannica.com/44/4144-004-43DD2776/Peneus-setiferus.jpg'>"
     
-    return render_template("header.html") + render_template("test.html") + map._repr_html_()
-
-@app.route("/test/<coords>") #any coords entered in url
-def test_specific(coords):
-    map = make_map(coords)
-    return render_template("header.html") + render_template("test.html") + map._repr_html_()
+    return render_template("header.html") + render_template("contour.html", lat = 0, long = 0 )
 
 def make_map(coords):
     if coords is None:
