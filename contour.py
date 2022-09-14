@@ -19,8 +19,10 @@ def make_contour_map(jsonFile):
     fileName = "templates/contour.html"
     centerLine = '                    center: [{{lat}}, {{long}}],\n'
     centerLineIndex = 46
+    iconLine = '                [{{lat}}, {{long}}],'
+    iconLineIndex = 65
 
-    # # Setup colormap
+    # # Setup colourmap
     # For the contour function
     colours = ['green', 'yellow', 'orange', 'red']
     vmin = 0
@@ -79,6 +81,9 @@ def make_contour_map(jsonFile):
     # Origin doesn't matter because it gets replaced later on
     geomap = folium.Map([0, 0], zoom_start=18, tiles="cartodbpositron")
 
+    folium.Marker(location = (0, 0), popup="Address", icon=folium.Icon(icon="glyphicon-flag")).add_to(geomap)
+    # geomap.add_child(folium.LatLngPopup()) #click map, marker pops up showing lat/lon
+
     # Plot the contour plot on folium
     folium.GeoJson(
         geojson,
@@ -104,6 +109,7 @@ def make_contour_map(jsonFile):
 
     # Now change the desired line, and write to file again
     contents[centerLineIndex] = centerLine
+    contents[iconLineIndex] = iconLine
     with open(fileName, "w") as f:
         f.writelines(contents)
 
