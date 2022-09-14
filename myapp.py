@@ -41,7 +41,7 @@ def test():
         try:
             return render_template("header.html") + render_template("contour.html", lat = location.latitude, long = location.longitude) 
         except:
-            pass
+            return render_template("header.html") + render_template("calculator.html")
         #return f"<h1>{test}</h1><br><img src='https://cdn.britannica.com/44/4144-004-43DD2776/Peneus-setiferus.jpg'>"
     
     #default coords to 'brisbane' == Elizabeth St
