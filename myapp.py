@@ -42,7 +42,7 @@ def test():
 
 @app.route("/test/<coords>")
 def test_specific(coords):
-    map = make_map(coords)
+    #map = make_map(coords)
     return render_template("header.html") + render_template("test.html") + map._repr_html_()
 
 def make_map(coords):
