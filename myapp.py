@@ -30,19 +30,21 @@ def charts():
 
 @app.route("/test", methods = ["POST", "GET"])
 def test():
+    """Address lookup"""
     locator = Nominatim(user_agent="addressLookup")
     if request.method == "POST":
         test = request.form["fname"]
         location = locator.geocode(test)
-        ##location.longitude = long, location.latitude
-        #map = make_map("{},{}".format(location.longitude, location.latitude))
-        #if location not None:
+        ##location coords are location.longitude, location.latitude
+        #TODO: only accept location within Wivenhoe region - need coords of contour region
+        #if location not None: <- TODO: fix None exception 
         return render_template("header.html") + render_template("contour.html", lat = location.latitude, long = location.longitude) 
         #return f"<h1>{test}</h1><br><img src='https://cdn.britannica.com/44/4144-004-43DD2776/Peneus-setiferus.jpg'>"
     
+    #default coords to 'brisbane' == Elizabeth St
     return render_template("header.html") + render_template("contour.html", lat = -27.4705, long = 153.0260 )
 
-def make_map(coords):
+"""def make_map(coords):
     if coords is None:
         coords = (-27.4705, 153.0260)
     else:
@@ -69,6 +71,6 @@ def make_map(coords):
     HeatMap(heat_data).add_to(map)
 
     return map
-
+"""
 if __name__ == "__main__":
     app.run()
