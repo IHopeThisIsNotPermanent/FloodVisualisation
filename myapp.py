@@ -46,7 +46,7 @@ def make_map(coords):
     if coords is None:
         coords = (-27.4705, 153.0260)
     else:
-        coords = coords.split(",")\
+        coords = coords.split(",")
 
     # Map
     map = folium.Map(location=coords, zoom_start=18)
