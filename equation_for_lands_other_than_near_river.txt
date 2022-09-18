@@ -1,0 +1,49 @@
+Q = (Cy * tIy * A)/360
+-------------------------------------------------------------------------------------------------------------------
+LOOK HERE, THIS IS THE FINAL EQUATION:
+
+Qy = (0.42 * rainfall (mm/h) *  71)/360
+
+Qy is the peak flow rate (m³/s) and rainfall is the only input you need (mm/h).
+
+END HERE
+----------------------------------------------------------------------------------------------------------------------
+this is one output: Qy = Peak flow rate (m³/s) for Annual Exceedance Probability (AEP)
+
+these are three inputs: 
+Cy = Coefficient of discharge (Dimensionless)
+A = Area of Catchment (ha)
+tIy = Average rainfall intensity (mm/h) for a 
+design duration of 't' hourst = nominal design storm duration as defined by the time of concentration (tc) 
+
+-----------------------------------------------------------------------------------------------------------------
+reference website:
+https://urbanutilities.com.au/business/accounts-and-billing/simpler-pricing/discharge-factors
+
+For Cy,  there are seven types of land with seven different discharge values. 
+I add up all the discharge values and calculate an average discharge value:
+2.97 / 7 = 0.42428571428571428571428571428571
+
+Cy is 0.42 (discharge value)
+Cy = 0.42
+########################################################################
+For A,  to be honest, this one is a very very hard one to calculate, you need the entire exact terrain information and
+very professional software to calculate this.
+
+So, my solution is calculating the average catchment area in brisbane when there were floods:
+
+reference website: https://www.mdpi.com/2073-4441/3/4/1149/htm#:~:text=The%20Brisbane%20River's%20catchment%20is,number%20of%20smaller%20coastal%20ranges.
+
+In 2011's flood, the catchment area was 13,570 km2  in total. 
+And there are 190 suburbs according to the Brisbane City Council.
+in this case, the average value is 13570/190 =71.421052631578947368421052631579
+
+The Average Catchment Area is 71.
+A = 71
+
+###############################################################################
+For tIy, this is the main input, tIy depends on the existing rainfall data.(needs to transform the unit to mm/h)
+for example, if the existing rainfall is (10 mm/min), we need to change it to (10 * 60 mm/h )
+this is the input X.
+##########################################################################################
+---------------------------------------------------END----------------------------------------------------------------------------------
