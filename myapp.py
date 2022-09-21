@@ -3,7 +3,7 @@ import folium
 from folium import GeoJson, plugins
 from folium.plugins import HeatMap
 import geopy
-from geopy import Nominatim
+from functions import *
 
 app = Flask(__name__)
 
@@ -23,6 +23,8 @@ def guide():
 def resources():
     return render_template("header.html") + render_template("resources.html")
 
+# Returns just a folium map HTML representation
+# Called as an iframe most of the time
 @app.route("/_map", methods=["GET"])
 def _map():
     Lat = request.args.get('lat')
@@ -33,28 +35,11 @@ def _map():
 def charts():
     return render_template("header.html") + render_template("charts.html")
 
-@app.route("/test", methods = ["POST", "GET"])
-def test():
-    """Address lookup"""
-    locator = Nominatim(user_agent="addressLookup")
+@app.route("/results", methods = ["POST", "GET"])
+def results():
     if request.method == "POST":
-        test = request.form["fname"]
-        location = locator.geocode(test)
-        ##location coords are location.longitude, location.latitude
-        #TODO: only accept location within Wivenhoe region - need coords of contour region
-        #if location not None: <- TODO: fix None exception
-        try:
-            return render_template("header.html") + render_template("contour.html", lat = location.latitude, long = location.longitude)
-        except:
-            return render_template("header.html") + render_template("calculator.html")
-        #return f"<h1>{test}</h1><br><img src='https://cdn.britannica.com/44/4144-004-43DD2776/Peneus-setiferus.jpg'>"
-
-    #default coords to 'brisbane' == Elizabeth St
-    # return render_template("header.html") + '<div>' + render_template("contour.html", lat = -27.4705, long = 153.0260 ) + "</div>"
-    return render_template("header.html") + render_template("results.html", map_address=iframe_map(-27.4705, 153.0260))
-
-def iframe_map(x, y):
-    return url_for('_map', lat=x, long=y)
+        return address_lookup(request.form["address"])
+    return "<h1>Why are you here bro?</h1>"
 
 if __name__ == "__main__":
     app.run()
