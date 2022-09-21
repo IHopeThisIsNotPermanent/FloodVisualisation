@@ -1,0 +1,98 @@
+according to the site http://www.bom.gov.au/climate/averages/tables/cw_040214.shtml
+if you choose the period "Use all years of data",
+you can see the brisbane's mean rainfall for each month, there is also a "Annual" rainfall,
+which is 1148.8. 
+1148.8/12 = 95.73. I divide it by 12 to get an average rainfall.
+95.73 this is the average rainfall for all the years.
+---------------------------------------------------------------------------------------------------
+LOOK HERE, THIS IS THE CONCLUSION:
+
+(一)y = 4160 * x + 877935
+y is dam level (ML) and x is the rainfall (millimetres)
+
+(二)z = 26 * x - 10032
+z is the wivenhoe release rate (cubic metres per second) and x is the rainfall amount (millimetres)
+
+
+BELOW IS MY WORK PROGRESS, BUT NOT IMPORTANT
+----------------------------------------------------------------------------------------
+what I do: 
+I collect the rainfall data when there were some floods, also their dates. 
+Also I check the dam level in those days (flood days). (also I check the amount of water discharge)
+Then I try to make a linear relation:
+y = ax + b
+y is the dam level and x is the rainfall amount. (a and b are what I'm looking for)
+
+z=mx+n
+z is the dam's water discharge amount and x is the rainfall amount. (m and n are what I'm looking for)
+
+I will use two pair of data for each of them to calculate the coefficients a,b,m,n
+----------------------------------------------------------------------------------------------------------------------------------
+calculate y=ax+b
+(1) 2022 flood
+In the three days to 28 February, greater Brisbane received 676.8 millimetres (26.65 in) of rainfall.
+WITH this information, 2022's February, the rainfall during flood is 676.8 /3 = 225.6 millimetres per day.
+
+so, same time, in Wivenhoe  dam, the dam level in 2022's February is:  https://www.seqwater.com.au/historic-dam-levels#source=490
+date		Last Observation (%)		Last Observation (ML)
+26/02/2022	142			1654988.14
+27/02/2022	183.9			2142740.71
+28/02/2022	173.9			2025951.81
+
+so the average dam level is 1,941,226 (ML)
+WE HAVE AN EQUATION:
+1941226 = a * 225.6 + b
+
+
+(2) 2011 flood
+The flood waters in Brisbane peaked at 4.46 metres at 4am on Thursday, January 13, 
+and 322 millimetres of rain was received over the Brisbane River catchment for the five days.
+WITH this information, 2011's January, the rainfall during flood is 322 millimetres per day.
+
+So, same time, Wivenhoe dam level on 2011 January 13 is :
+Name	Date	Last Observation (%)	Last Observation (ML)
+Wivenhoe	11/01/2011	190.3	2217455.08
+Wivenhoe	12/01/2011	188.7	2198600.26
+Wivenhoe	13/01/2011	182.3	2123857.35
+
+The dam level is 2217455.08.
+WE HAVE ANOTHER EQUATION:
+2217455.08 = a * 322 + b
+
+WITH (2) minus (1), I have this:
+276,229.08 = 66.4 * a 
+a = 4,160.076506024096 BUT I will write 4160 here for a
+
+then we have b:877,935.08 BUT I will write 877935
+we have this y = 4160 * x + 877935
+y is dam level (ML) and x is the rainfall (millimetres)
+--------------------------------------------------------------------------------------------
+calculate z = m*x + n
+
+(1)FLOOD 2011: An SEQwater statement said water was being released at a rate of 
+approximately 1660 cubic metres per second, increased from 300 cubic metres per second on January 25.
+
+THE z1 = 1660 cubic metres per second
+
+The flood waters in Brisbane peaked at 4.46 metres at 4am on Thursday, January 13, 
+and 322 millimetres of rain was received over the Brisbane River catchment for the five days.
+WITH this information, 2011's January, the rainfall during flood is 322 millimetres per day.
+
+1660 = 322* m + n
+
+(2) FLOOD 2022: the 3400m3/s experienced at the height of the February/March floods.
+2022's February, the rainfall during flood is 676.8 /3 = 225.6 millimetres per day.
+
+3400 = 255.6 * m + n
+
+WITH  (2) - (1)
+
+1,740 = -66.4 * m
+m = -26.20481927710843 BUT I will wirte m as -26 here
+
+then n = 10,032
+
+WE HAVE  z = -26 * x + 10032
+z is the wivenhoe release rate (cubic metres per second) and x is the rainfall amount (millimetres)
+--------------------------------------------------------
+done

@@ -1,0 +1,41 @@
+y = 0.005*x + 3.287
+y is brisbane river peak height (m) and x is rainfall value (mm)
+------------------------------------------------------
+2011:
+2011 flood's details, mainly about river peak height:
+https://en.wikipedia.org/wiki/2010%E2%80%932011_Queensland_floods#:~:text=With%20the%20flood%20peaking%20at,two%20major%20floods%20in%201893.
+2011 australian flood brisbane river peak height is: 4.46 metres  (also, The Brisbane River peaked on 13 January )
+
+2011 flood's rainfall amount in January:
+http://www.bom.gov.au/climate/current/month/qld/archive/201101.brisbane.shtml#:~:text=The%20highest%20daily%20rainfall%20total,110.0%20mm%20on%20the%2012th.
+The highest daily rainfall total recorded in the Brisbane Metro area during January was at Brisbane Aero with 112.6 mm 
+
+so, the equation can be: y = ax + b
+y is brisbane river peak height(4.46m). x is the rainfall.(mm,millimetres )
+4.46 = a * 112.6 + b
+--------------------------------------------------------------------------------------------------
+2022 flood's details:
+https://www.insurancebusinessmag.com/au/news/natural-catastrophe/flood-disaster-comparisons-brisbane-2011-versus-2022-407195.aspx#:~:text=In%20the%20recent%202022%20floods,higher%20than%20previous%20peak%20levels.
+In the recent 2022 floods in Brisbane, the river peak was lower than the 1974 and 2011 events at 3.85 metres.
+
+In the three days to 28 February, greater Brisbane received 676.8 millimetres (26.65 in) of rainfall
+so 225.6mm per day
+3.85 = a * 225.6 + b
+----------------------------------------------
+this is weird, x is increasing but y is decreasing. 
+maybe because it depends on many factors, like, brisbane really improve its drainage system?
+or you can say they are not in linear relationship
+what do you think bro?
+I suggest we stick with linear one....
+------------------------------------------------------------------------------
+for a linear one, we can create a fake function here:
+4.46 = a * 225.6 + b
+3.85 = a * 112.6 + b
+(just swap the rainfall value)
+0.61=a*113
+a=0.0053982300884956
+a=0.005
+b=3.287
+
+so y = 0.005*x + 3.287
+-----------------------------------------
