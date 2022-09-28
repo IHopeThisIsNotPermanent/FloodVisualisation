@@ -31,6 +31,14 @@ def _map():
     Long = request.args.get('long')
     return render_template("contour.html", lat=Lat, long=Long)
 
+@app.route("/_man_map", methods=["GET"])
+def _man_map():
+    x1 = request.args.get('x1')
+    x2 = request.args.get('x2')
+    y1 = request.args.get('y1')
+    y2 = request.args.get('y2')
+    return render_template("manual_map.html", X1=x1, X2=x2, Y1=y1, Y2=y2)
+
 @app.route("/charts")
 def charts():
     return render_template("header.html") + render_template("charts.html")
@@ -49,8 +57,6 @@ def results():
             return address_lookup(request.form["address"])
         except Exception:
             try:
-                print(request.form["lat"])
-                print(request.form["long"])
                 return latlong_lookup(request.form["lat"], request.form["long"])
             except Exception:
                 return redirect(url_for("home"))
