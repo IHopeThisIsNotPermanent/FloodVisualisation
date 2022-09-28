@@ -35,11 +35,26 @@ def _map():
 def charts():
     return render_template("header.html") + render_template("charts.html")
 
+@app.route("/manual", methods=["GET"])
+def manual():
+    # Has the same form for searching address if the user wants to try again
+    # Explains the problem that occured (address not found or address out of bounds) ###Make that get sent
+    # Otherwise gives a new form with lat/long boxes, tells the user to find and click on their address and copy the lat and long
+    return manual_select_map(request.args.get('reason'))
+
 @app.route("/results", methods = ["POST", "GET"])
 def results():
     if request.method == "POST":
-        return address_lookup(request.form["address"])
-    return "<h1>Why are you here bro?</h1>"
+        try:
+            return address_lookup(request.form["address"])
+        except Exception:
+            try:
+                print(request.form["lat"])
+                print(request.form["long"])
+                return latlong_lookup(request.form["lat"], request.form["long"])
+            except Exception:
+                return redirect(url_for("home"))
+    return redirect(url_for("home"))
 
 if __name__ == "__main__":
     app.run()

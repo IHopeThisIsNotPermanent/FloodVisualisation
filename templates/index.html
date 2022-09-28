@@ -1,5 +1,5 @@
 <!-- Custom styles for this template -->
-<link href="{{url_for('static', filename='index.css')}}" rel="stylesheet">
+<link href="{{url_for('static', filename='global.css')}}" rel="stylesheet">
 <body>
 
 <main>
@@ -11,7 +11,7 @@
         <form method = "post" action = "/results">
           <div class="row">
             <div class="col address-box">
-              <input type="text" class="form-control" id="address" name="address" placeholder="Enter an address">
+              <input type="text" class="form-control" name="address" placeholder="Enter an address">
             </div>
             <div class="col address-box">
               <input type="submit" class="btn btn-primary" value="Check">
