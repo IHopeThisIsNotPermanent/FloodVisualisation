@@ -34,5 +34,5 @@ def manual_select_map(reason):
     # Return map as ifram with bounding box of acceptable areas to click
     # On click: shows lat and long so that the user can copy
     if reason is None:
-        return render_template("header.html") + render_template("manual_map.html")
+        return render_template("header.html") + render_template("manual.html")
     return render_template("header.html") + "<h1>In progress...</h1>"
