@@ -25,10 +25,10 @@
     <form method = "post" action = "/results">
       <div class="row">
         <div class="col address-box">
-          <input type="text" class="form-control" name="lat" placeholder="-27.4689682">
+          <input type="text" class="form-control" name="lat" placeholder="-27.4689">
         </div>
         <div class="col address-box">
-          <input type="text" class="form-control" name="long" placeholder="153.0234991">
+          <input type="text" class="form-control" name="long" placeholder="153.0234">
         </div>
       </div>
       <div class="row">
@@ -37,5 +37,19 @@
       </div>
       </div>
     </form>
-    <iframe class="embed-responsive-item border rounded-3 shadow-lg mb-4" width=1000 height=800 src='{{map_address}}' loading="lazy"></iframe>
+    <iframe id="map" class="embed-responsive-item border rounded-3 shadow-lg mb-4" width=1000 height=800 src='{{map_address}}' loading="lazy"></iframe>
 </div>
+<script>
+$(document).ready(function(){
+    $("iframe").on("load", function(){
+        $(this).contents().on("click", function(){
+            var frame = document.getElementById("map");
+            var element = frame.contentWindow.document.getElementById("data");
+            var lat = element.dataset.lat;
+            var long = element.dataset.long;
+            $('input[name="lat"]').val(lat);
+            $('input[name="long"]').val(long);
+        });
+    });
+});
+</script>

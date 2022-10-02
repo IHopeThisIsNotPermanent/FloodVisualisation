@@ -34,7 +34,7 @@
 
 </head>
 <body>
-
+            <div id="data" data-lat="-27.4689" data-long="153.0234"></div>
             <div class="folium-map" id="map_af2cfa99e1ebf2853c91bb24e1253fa7" ></div>
 
 </body>
@@ -65,9 +65,10 @@
                 function latLngPop(e) {
                     lat_lng_popup_835a13f685eed5256aa5b0862e059a9c
                         .setLatLng(e.latlng)
-                        .setContent("Latitude: " + e.latlng.lat.toFixed(4) +
-                                    "<br>Longitude: " + e.latlng.lng.toFixed(4))
+                        .setContent("Now click submit!")
                         .openOn(map_af2cfa99e1ebf2853c91bb24e1253fa7);
+                    $("#data").attr("data-lat", e.latlng.lat.toFixed(4));
+                    $("#data").attr("data-long", e.latlng.lng.toFixed(4));
                     }
                 map_af2cfa99e1ebf2853c91bb24e1253fa7.on('click', latLngPop);
 
