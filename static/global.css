@@ -6,6 +6,12 @@
   box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
 }
 
+#guide-shrimp {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .form-control {
   width: 200px;
 }
