@@ -37,8 +37,11 @@
       </div>
       </div>
     </form>
-    <iframe id="map" class="embed-responsive-item border rounded-3 shadow-lg mb-4" width=1000 height=800 src='{{map_address}}' loading="lazy"></iframe>
 </div>
+<div id="mapdiv">
+<iframe id="map" class="embed-responsive-item border rounded-3 shadow-lg mb-4" src='{{map_address}}' loading="lazy"></iframe>
+</div>
+
 <script>
 $(document).ready(function(){
     $("iframe").on("load", function(){
