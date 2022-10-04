@@ -2,13 +2,14 @@
 
 <section>
     <h1 class="display-4 fw-bold text-center">Manual Location Entry</h1>
+    <p class="lead text-center">Please use one of the following two options to find your location.</p><br>
 
-    <p class="lead mb-4">Below are two options to find your location.</p><br>
-    <p class="lead mb-4">The first is to try and enter the address again. Use this if you believe there was an error in the previous search.</p><br>
-    <p class="lead mb-4">Otherwise, there is an interactive map you can use to manually find your location.</p><br>
 </section>
-<div class="col-lg-6 mx-auto my-5 text-center">
-    <h1 class="display-4 fw-bold">Re-Enter Your Address</h1>
+<div class="col-lg-6 mx-auto mb-5 text-center">
+    <h1 class="display-4 fw-bold">{% if reason != "none" %}Re-{% endif %}Enter Your Address</h1>
+    {% if reason != "none" %}
+    <h2 class="lead">If you believe there was an error in the previous search, you can re-enter your address.</h2><br>
+    {% endif %}
     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
       <form method = "post" action = "/results">
         <div class="row">
@@ -24,7 +25,7 @@
 </div>
 <div class="col-lg-6 mx-auto my-5 text-center">
     <h1 class="display-4 fw-bold">Interactive Map</h1>
-    <h2>Click on your location on map</h2>
+    <h2 class="lead mb-4">Click on your location on the map</h2>
     <form method = "post" action = "/results">
       <div class="row">
         <div class="col address-box">
