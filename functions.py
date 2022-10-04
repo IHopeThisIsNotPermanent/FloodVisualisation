@@ -55,5 +55,7 @@ def manual_select_map(reason):
     elif reason not in ("bounds", "failed"):
         #Out of bounds, Address failed
         reason = "error, bad reason"
+    #Debug text
+    #f"<h1>{reason.capitalize()}</h1>" +
 
-    return render_template("header.html") + f"<h1>{reason.capitalize()}</h1>" + render_template("manual.html", map_address=iframe_man_map(), reason=reason)
+    return render_template("header.html") + render_template("manual.html", map_address=iframe_man_map(), reason=reason)
