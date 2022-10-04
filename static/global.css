@@ -15,12 +15,10 @@
   width: 150%;
 } */
 
-.col {
-  padding: 5px;
-}
-#map {
-  width: 100%;
-  height: 100%;
+.col input{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #mapdiv {
@@ -32,6 +30,7 @@
   width: 100%;
   height: 100%;
 }
+
 @media only screen and (min-width: 576px) {
   #mapdiv {
     width: 90%;
