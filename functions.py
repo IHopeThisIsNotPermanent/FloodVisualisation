@@ -51,12 +51,9 @@ def latlong_lookup(lat, long):
 def manual_select_map(reason):
     # Normal page visitation
     if reason is None:
-        return render_template("header.html") + "<h1>None</h1>" + render_template("manual.html", map_address=iframe_man_map())
+        reason = "none"
+    elif reason not in ("bounds", "failed"):
+        #Out of bounds, Address failed
+        reason = "error, bad reason"
 
-    # Address failed
-    if reason == "failed":
-        return render_template("header.html") + "<h1>Failed</h1>" + render_template("manual.html", map_address=iframe_man_map())
-
-    # Out of bounds
-    if reason == "bounds":
-        return render_template("header.html") + "<h1>Bounds</h1>" + render_template("manual.html", map_address=iframe_man_map())
+    return render_template("header.html") + f"<h1>{reason.capitalize()}</h1>" + render_template("manual.html", map_address=iframe_man_map(), reason=reason)
