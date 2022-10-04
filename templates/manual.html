@@ -3,7 +3,7 @@
 
 <p class="lead mb-4">Below are two options to find your location.</p><br>
 <p class="lead mb-4">The first is to try and enter the address again. Use this if you believe there was an error in the previous search.</p><br>
-<p class="lead mb-4">Otherwise, there is an interactive map you can use to manually find your location and enter the co-ordinates into the provided form.</p><br>
+<p class="lead mb-4">Otherwise, there is an interactive map you can use to manually find your location.</p><br>
 <div class="col-lg-6 mx-auto my-5 text-center">
     <h1 class="display-4 fw-bold">Re-Enter Your Address</h1>
     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
@@ -21,14 +21,14 @@
 </div>
 <div class="col-lg-6 mx-auto my-5 text-center">
     <h1 class="display-4 fw-bold">Interactive Map</h1>
-    <h2>This will be wicked</h2>
+    <h2>Click on your location on map</h2>
     <form method = "post" action = "/results">
       <div class="row">
         <div class="col address-box">
-          <input type="text" class="form-control" name="lat" placeholder="-27.4689">
+          <input type="text" class="form-control" name="lat" placeholder="-27.4689" tabindex="-1">
         </div>
         <div class="col address-box">
-          <input type="text" class="form-control" name="long" placeholder="153.0234">
+          <input type="text" class="form-control" name="long" placeholder="153.0234" tabindex="-1">
         </div>
       </div>
       <div class="row">

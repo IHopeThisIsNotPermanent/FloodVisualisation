@@ -21,6 +21,10 @@
   margin-right: auto;
 }
 
+input[name=lat], input[name=long] {
+  pointer-events: none;
+}
+
 #mapdiv {
   width: 100%;
   height: 50%;
