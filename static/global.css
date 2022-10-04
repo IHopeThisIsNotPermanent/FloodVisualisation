@@ -24,17 +24,35 @@
 }
 
 #mapdiv {
-  width: 80%;
-  height: 90%;
-  margin-left: 10%;
+  width: 100%;
+  height: 50%;
 }
+
 #map {
   width: 100%;
   height: 100%;
 }
+@media only screen and (min-width: 576px) {
+  #mapdiv {
+    width: 90%;
+    height: 50%;
+    margin-left: 5%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #mapdiv {
+    width: 80%;
+    height: 65%;
+    margin-left: 10%;
+  }
+}
 
 @media only screen and (min-width: 992px) {
   .rounded-lg-3 { border-radius: .3rem; }
+  #mapdiv {
+    height: 80%;
+  }
 }
 
 @media only screen and (min-width: 1250px) {
