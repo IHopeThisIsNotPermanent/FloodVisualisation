@@ -1,0 +1,62 @@
+<link href="{{url_for('static', filename='global.css')}}" rel="stylesheet">
+
+<section>
+    <h1 class="display-4 fw-bold text-center">Manual Location Entry</h1>
+    <p class="lead text-center">Please use one of the following two options to find your location.</p><br>
+
+</section>
+<div class="col-lg-6 mx-auto mb-5 text-center">
+    <h1 class="display-4 fw-bold">{% if reason != "none" %}Re-{% endif %}Enter Your Address</h1>
+    {% if reason != "none" %}
+    <h2 class="lead">If you believe there was an error in the previous search, you can re-enter your address.</h2><br>
+    {% endif %}
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+      <form method = "post" action = "/results">
+        <div class="row">
+          <div class="col address-box">
+            <input type="text" class="form-control" name="address" placeholder="Enter an address">
+          </div>
+          <div class="col address-box">
+            <input type="submit" class="btn btn-primary" value="Check">
+          </div>
+        </div>
+      </form>
+    </div>
+</div>
+<div class="col-lg-6 mx-auto my-5 text-center">
+    <h1 class="display-4 fw-bold">Interactive Map</h1>
+    <h2 class="lead mb-4">Click on your location on the map</h2>
+    <form method = "post" action = "/results">
+      <div class="row">
+        <div class="col address-box">
+          <input type="text" class="form-control" name="lat" placeholder="-27.4689" tabindex="-1">
+        </div>
+        <div class="col address-box">
+          <input type="text" class="form-control" name="long" placeholder="153.0234" tabindex="-1">
+        </div>
+      </div>
+      <div class="row">
+      <div class="col address-box">
+        <input type="submit" class="btn btn-primary" value="Submit">
+      </div>
+      </div>
+    </form>
+</div>
+<div id="mapdiv">
+<iframe id="map" class="embed-responsive-item border rounded-3 shadow-lg mb-4" src='{{map_address}}' loading="lazy"></iframe>
+</div>
+
+<script>
+$(document).ready(function(){
+    $("iframe").on("load", function(){
+        $(this).contents().on("click", function(){
+            var frame = document.getElementById("map");
+            var element = frame.contentWindow.document.getElementById("data");
+            var lat = element.dataset.lat;
+            var long = element.dataset.long;
+            $('input[name="lat"]').val(lat);
+            $('input[name="long"]').val(long);
+        });
+    });
+});
+</script>

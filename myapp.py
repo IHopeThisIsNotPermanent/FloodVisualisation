@@ -1,5 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 import folium
+from folium import GeoJson, plugins
+from folium.plugins import HeatMap
+import geopy
+from functions import *
 
 app = Flask(__name__)
 
@@ -19,32 +23,44 @@ def guide():
 def resources():
     return render_template("header.html") + render_template("resources.html")
 
+# Returns just a folium map HTML representation
+# Called as an iframe most of the time
+@app.route("/_map", methods=["GET"])
+def _map():
+    Lat = request.args.get('lat')
+    Long = request.args.get('long')
+    return render_template("contour.html", lat=Lat, long=Long)
+
+@app.route("/_man_map", methods=["GET"])
+def _man_map():
+    x1 = request.args.get('x1')
+    x2 = request.args.get('x2')
+    y1 = request.args.get('y1')
+    y2 = request.args.get('y2')
+    return render_template("manual_map.html", X1=x1, X2=x2, Y1=y1, Y2=y2)
+
 @app.route("/charts")
 def charts():
     return render_template("header.html") + render_template("charts.html")
 
-@app.route("/test", methods = ["POST", "GET"])
-def test():
+@app.route("/manual", methods=["GET"])
+def manual():
+    # Has the same form for searching address if the user wants to try again
+    # Explains the problem that occured (address not found or address out of bounds) ###Make that get sent
+    # Otherwise gives a new form with lat/long boxes, tells the user to find and click on their address and copy the lat and long
+    return manual_select_map(request.args.get('reason'))
+
+@app.route("/results", methods = ["POST", "GET"])
+def results():
     if request.method == "POST":
-        test = request.form["fname"]
-        return f"<h1>{test}</h1><br><img src='https://cdn.britannica.com/44/4144-004-43DD2776/Peneus-setiferus.jpg'>"
-    map = make_map(None)
-    return render_template("header.html") + render_template("test.html") + map._repr_html_()
-
-@app.route("/test/<coords>")
-def test_specific(coords):
-    map = make_map(coords)
-    return render_template("header.html") + render_template("test.html") + map._repr_html_()
-
-def make_map(coords):
-    if coords is None:
-        coords = (-27.4705, 153.0260)
-    else:
-        coords = coords.split(",")
-    map = folium.Map(location=coords, zoom_start=18)
-    folium.Marker(location = coords, popup="Address", icon=folium.Icon(icon="glyphicon-flag")).add_to(map)
-    map.add_child(folium.LatLngPopup()) #click map, marker pops up showing lat/lon
-    return map
+        try:
+            return address_lookup(request.form["address"])
+        except Exception:
+            try:
+                return latlong_lookup(request.form["lat"], request.form["long"])
+            except Exception:
+                return redirect(url_for("home"))
+    return redirect(url_for("home"))
 
 if __name__ == "__main__":
     app.run()

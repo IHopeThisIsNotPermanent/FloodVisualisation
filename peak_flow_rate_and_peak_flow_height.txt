@@ -1,0 +1,45 @@
+y = ax + b
+
+y is the peak height of the flood, x is the peak flow rate of flood. 
+----------------------------------------------------------------------------------------
+THE RESULT IS HERE
+
+y = 0.00087 * x + 1.415
+
+y is the peak height of the flood, x is the peak flow rate of the flood. 
+
+(use this function with the rainfall<---->flood peak rate)
+
+END HERE
+----------------------------------------------------------
+2011 flood:
+
+The peak flow rate around Withcott and Grantham where Lockyer Creek is joined by Gatton Creek, 
+was estimated to be 3,500 m**3 second.
+
+With the flood peaking at 4.46 metres (14.6 ft) in Brisbane City.
+
+4.46 = 3500 * a + b
+
+-----------------------------------------------------------------------------------------------------------
+The Brisbane River peaked at 3.85m on Monday morning
+about 725 gigalites, entered Wivenhoe Dam in the past three days.
+725/3=241.6, 
+241gigalites
+241 * 10 ^9 lites, which is 241 * 10^6  (m^3)
+this is one day, one day and has 241 * 10^6, and one day has 24*60*60=86,400 seconds
+so 241 * 10^6 / 86400 = 2,789.3= 2,789 (m^3/sec)
+
+3.85 = 2,789 * a + b
+------------------------------------------------------------
+0.61 = 711 * a
+a = 0.00087
+
+b = 1.415
+------------------------------------------------
+the final one is:
+y = 0.00087 * x + 1.415
+
+y is the peak height of the flood, x is the peak flow rate of the flood.
+--------------------------------------------------------------------------------------------------------------------------------------------
+

@@ -1,0 +1,25 @@
+body {
+	height: 100%;
+}
+
+section {
+	margin-top: 30px;
+}
+
+@media only screen and (min-width: 600px) {
+	section {
+		margin-left: 9%;
+		margin-right: 9%;
+	}
+}
+
+
+@media only screen and (min-width: 992px) {
+	/* Navbar changes from mobile mode to desktop mode here */
+	section {
+		width: 800px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 50px;
+	}
+}
