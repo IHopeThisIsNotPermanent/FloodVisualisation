@@ -1,5 +1,6 @@
 import numpy as np
 import linfunc
+from matplotlib import pyplot as plt
 
 quads = []
 for down in (0,1):
@@ -14,7 +15,7 @@ class grid:
     
     def __init__(self, quads):
         grid = []
-        for down in ((quads[0], quads[1]), (quads[2], quads[3])):
+        for down in ((quads[0], quads[2]), (quads[1], quads[3])):
             for left, right in zip(down[0], down[1]):
                 grid.append(list(left) + list(right))
         
@@ -24,7 +25,10 @@ class grid:
         if lat < 25 or lat >= 30 or long < 150 or long >= 155:
             print("WRONG")
             return 0
-        return self.data[int(6000*((lat-25)/5))][int(6000*(long-150)/5)]
+        point = self.data[int(6000*((lat-25)/5))][int(6000*(long-150)/5)]
+        if point > 100:
+            point /= 100
+        return point
     
     def getfunc(self, long, lat):
         #assuming brisbane river is 4m above sea level

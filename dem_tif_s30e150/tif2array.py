@@ -28,4 +28,3 @@ for down in (0,1):
 
 # 00 01 10 11
 size1,size2=img_as_array.shape
-
