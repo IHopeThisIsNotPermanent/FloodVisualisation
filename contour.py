@@ -24,7 +24,7 @@ def make_contour_map(jsonFile):
 
     # # Setup colourmap
     # For the contour function
-    colours = ['green', 'yellow', 'orange', 'red']
+    colours = ['turquoise', '#80FF00', 'yellow', '#FF5100', '#990202']
     vmin = 0
     vmax = 1
     # To make a legend on the map
