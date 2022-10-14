@@ -80,7 +80,7 @@ def get_quads():
 
     if parent == "dem_tif_s30e150":
         picklePathPrefix = "./"
-    elif parent == "FloodVisualisation":
+    elif parent == "FloodVisualisation" or parent == "uwsgi":
         picklePathPrefix = "./dem_tif_s30e150/"
 
     for down in (0,1):
