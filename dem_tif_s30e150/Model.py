@@ -1,12 +1,7 @@
 import numpy as np
-import linfunc
+import os
 from matplotlib import pyplot as plt
 import math
-
-quads = []
-for down in (0,1):
-    for right in (0,1):
-        quads.append(np.load("./s"+str(30+2.5*down)+"e"+str(150+2.5*right)+"_dem_NumpyArray_Pickle", allow_pickle = True))
 
 class grid:
     x_vals = [1.6,1.7,1.8,2.2,3.2,4.5,5.8,7.3,9.9,14.7,23.7]
@@ -21,8 +16,9 @@ class grid:
                  (27.52705,152.93932),
                  (27.53831,152.92628))
 
-    def __init__(self, quads):
+    def __init__(self):
         grid = []
+        quads = get_quads()
         for down in ((quads[0], quads[2]), (quads[1], quads[3])):
             for left, right in zip(down[0], down[1]):
                 grid.append(list(left) + list(right))
@@ -68,10 +64,76 @@ class grid:
 
         #assuming brisbane river is 4m above sea level
         difference = self.getpos(long, lat)-4
-        return lambda x: 100000 if x + difference > 23.7 else 0 if x + difference < 1.6 else linfunc.linsample(grid.x_vals, grid.y_vals, [x + difference,x + difference,1])[0]
+        return lambda x: 100000 if x + difference > 23.7 else 0 if x + difference < 1.6 else linsample(grid.x_vals, grid.y_vals, [x + difference,x + difference,1])[0]
+
+def get_quads():
+    quads = []
+    cwd = os.getcwd()
+    picklePathPrefix = ""
+
+    if "/" in cwd:
+        # Unix
+        parent = cwd.split("/")[-1]
+    else:
+        # Windows
+        parent = cwd.split("\\")[-1]
+
+    if parent == "dem_tif_s30e150":
+        picklePathPrefix = "./"
+    elif parent == "FloodVisualisation":
+        picklePathPrefix = "./dem_tif_s30e150/"
+
+    for down in (0,1):
+        for right in (0,1):
+            quads.append(np.load(picklePathPrefix + "s"+str(30+2.5*down)+"e"+str(150+2.5*right)+"_dem_NumpyArray_Pickle", allow_pickle = True))
+
+    return quads
+
+def line(point1, point2, x_val):
+    if point1[0] == point2[0]:
+        point1 = (point1[0] + 0.000001, point1[1])
+    return (point1[1]-point2[1])/(point1[0]-point2[0])*x_val+(point1[1]-(point1[1]-point2[1])/(point1[0]-point2[0])*point1[0])
+
+def linsample(x_vals, y_vals, arange):
+    """
+    linsample creates a linear segment model with segments equal to the number of data points - 1
+    it then samples this model in arange, and returns those values as a list.
+
+    Input
+    -----
+    x_vals : list<float>
+        the x values of the data points
+    y_vals : list<float>
+        the y values of the data points
+    arange : list<float>
+        the range of x values you wish to sample, formatted (x_min, x_max, x_step_count)
+
+    Returns
+    -------
+    list<float>
+        the y values that the model maps from the given arange.
+    """
+
+    x_vals.append(x_vals[len(x_vals)-1])
+    y_vals.append(y_vals[len(y_vals)-1])
+
+    head = 0
+    stepsize = (arange[1]-arange[0])/arange[2]
+    out = []
+
+    for step in range(arange[2]):
+        x_val = arange[0] + stepsize*step
+        while x_vals[head+1] < x_val:
+            head += 1
+        out.append(line((x_vals[head],y_vals[head]), (x_vals[head+1], y_vals[head+1]), x_val))
+
+    x_vals.pop()
+    y_vals.pop()
+
+    return out
 
 
 
 if __name__ == "__main__":
-    dat = grid(quads)
+    dat = grid()
     print(dat.getfunc(153.0277, -27.4777)(2))

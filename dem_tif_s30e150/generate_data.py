@@ -1,5 +1,4 @@
-from Model import grid
-from linfunc import linsample
+from Model import grid, linsample, get_quads
 import numpy as np
 import pandas as pd
 import folium
@@ -11,6 +10,7 @@ import geojsoncontour
 import scipy as sp
 import scipy.ndimage
 import json
+import os
 
 LAT = [-27.3773, -27.5990]
 LONG = [152.9029, 153.2002]
@@ -128,22 +128,29 @@ def make_contour_map(jsonFile):
         f.writelines(contents)
 
 if __name__ == "__main__":
+    # Path check
+    cwd = os.getcwd()
+    if "/" in cwd:
+        # Unix
+        parent = cwd.split("/")[-1]
+    else:
+        # Windows
+        parent = cwd.split("\\")[-1]
+    if parent != "dem_tif_s30e150":
+        print("This file must be run from the dem_tif_s30e150 folder")
+        exit()
+
     lat = LAT[0]
     long = LONG[0]
 
-    quads = []
-    for down in (0,1):
-        for right in (0,1):
-            quads.append(np.load("./s"+str(30+2.5*down)+"e"+str(150+2.5*right)+"_dem_NumpyArray_Pickle", allow_pickle = True))
-
-    m = grid(quads)
+    m = grid()
     a = []
 
     print("Querying model")
 
     while lat > LAT[1]:
         while long < LONG[1]:
-            a.append([lat, long, years_to_weight(m.getfunc(long, lat)(2))])
+            a.append([lat, long, years_to_weight(m.getfunc(long, lat)(1))])
             long += CONST
         long = LONG[0]
         lat -= CONST

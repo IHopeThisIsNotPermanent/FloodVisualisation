@@ -1,5 +1,8 @@
 from geopy import Nominatim
 from flask import render_template, url_for, redirect
+from dem_tif_s30e150.Model import grid
+
+import time
 
 TL_BOUND = [-27.3773, 152.9029]
 BR_BOUND = [-27.5990, 153.2002]
@@ -59,3 +62,9 @@ def manual_select_map(reason):
     #f"<h1>{reason.capitalize()}</h1>" +
 
     return render_template("header.html") + render_template("manual.html", map_address=iframe_man_map(), reason=reason)
+
+if __name__ == "__main__":
+    dat = grid()
+    a = time.perf_counter()
+    print(dat.getfunc(153.0277, -27.4777)(2))
+    print(f"Took {time.perf_counter() - a} seconds")
