@@ -11,10 +11,6 @@ app = Flask(__name__)
 def home():
     return render_template("header.html") + render_template("index.html")
 
-@app.route("/calculator")
-def calculator():
-    return render_template("header.html") + render_template("calculator.html")
-
 @app.route("/guide")
 def guide():
     return render_template("header.html") + render_template("guide.html")
@@ -39,10 +35,6 @@ def _man_map():
     y2 = request.args.get('y2')
     return render_template("manual_map.html", X1=x1, X2=x2, Y1=y1, Y2=y2)
 
-@app.route("/charts")
-def charts():
-    return render_template("header.html") + render_template("charts.html")
-
 @app.route("/manual", methods=["GET"])
 def manual():
     # Has the same form for searching address if the user wants to try again
@@ -58,7 +50,8 @@ def results():
         except Exception:
             try:
                 return latlong_lookup(request.form["lat"], request.form["long"])
-            except Exception:
+            except Exception as e:
+                print(e)
                 return redirect(url_for("home"))
     return redirect(url_for("home"))
 

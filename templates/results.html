@@ -3,18 +3,54 @@
 
 
 <link href="{{url_for('static', filename='global.css')}}" rel="stylesheet">
-<h1 class="display-4 fw-bold text-center">Risk Analysis Results</h1>
+<h1 class="display-1 text-center">Risk Analysis Results</h1>
+<h3 class="display-5 text-center">Your overall flood risk score is: <b>{{tableData[6]}}</b> out of 10</h3>
+<h4 class="display-7 text-center">A score of 10 is most at risk and a score of 0 would be no risk</h4>
 <div class="mx-auto my-5 text-center">
     <h1 class="display-4 fw-bold">Map View</h1>
+    <h2 class="display-7 text-left">Risk map at 1m flooding depth</h2>
 </div>
 <div id="mapdiv">
     <iframe id="map" class="embed-responsive-item border rounded-3 shadow-lg mb-4" width=1000 height=800 src='{{map_address}}' loading="lazy"></iframe>
 </div>
-
-<div class="col-lg-6 mx-auto my-5 text-center">
-    <h1 class="display-4 fw-bold">Charts bro</h1>
-    <canvas id="myChart" class="border rounded-3" style="width:100%;max-width:700px"></canvas>
+<br>
+<br>
+<br>
+<div class="col-lg-6 mx-auto my-5">
+    <h1 class="display-4 fw-bold text-center">Flood Height Risk</h1>
+    <h3 class="display-7">This table gives a list of the frequency of flooding past a certain height for this location</h3>
+    <table class="table table-hover">
+  <thead class="table-primary">
+    <tr>
+      <th scope="col">Flood Level</th>
+      <th scope="col">Event Frequency</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1m</td>
+      <td>1 in {{tableData[0]}} years</td>
+    </tr>
+    <tr>
+      <td>2m</td>
+      <td>1 in {{tableData[1]}} years</td>
+    </tr>
+    <tr>
+      <td>3m</td>
+      <td>1 in {{tableData[2]}} years</td>
+    </tr>
+    <tr>
+      <td>4m</td>
+      <td>1 in {{tableData[3]}} years</td>
+    </tr>
+    <tr>
+      <td>5m</td>
+      <td>1 in {{tableData[4]}} years</td>
+    </tr>
+    <tr>
+      <td>10m</td>
+      <td>1 in {{tableData[5]}} years</td>
+    </tr>
+  </tbody>
+</table>
 </div>
-
-<!-- Chart Javascript -->
-<script src="{{url_for('static', filename='results.js')}}"></script>

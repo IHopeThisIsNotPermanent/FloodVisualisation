@@ -1,6 +1,6 @@
 from geopy import Nominatim
 from flask import render_template, url_for, redirect
-from dem_tif_s30e150.Model import grid
+from dem_tif_s30e150.Model import grid, linsample
 
 import time
 
@@ -36,7 +36,7 @@ def address_lookup(term):
         return redirect(url_for("manual", reason="bounds"))
 
     # Render map at address
-    return render_template("header.html") + render_template("results.html", map_address=iframe_map(x, y))
+    return render_template("header.html") + render_template("results.html", map_address=iframe_map(x, y), tableData=generate_table(x,y), totalRisk=3.9)
 
 def latlong_lookup(lat, long):
     # In case someone gets funny and puts non-floats into the coord boxes
@@ -49,7 +49,7 @@ def latlong_lookup(lat, long):
     except ValueError:
         # You have to be trolling to do this though...
         return redirect(url_for("manual", reason="bounds"))
-    return render_template("header.html") + render_template("results.html", map_address=iframe_map(lat, long))
+    return render_template("header.html") + render_template("results.html", map_address=iframe_map(lat, long), tableData=generate_table(lat,long), totalRisk=3.9)
 
 def manual_select_map(reason):
     # Normal page visitation
@@ -63,8 +63,29 @@ def manual_select_map(reason):
 
     return render_template("header.html") + render_template("manual.html", map_address=iframe_man_map(), reason=reason)
 
-if __name__ == "__main__":
+def generate_table(lat, long):
+    out = []
+
     dat = grid()
-    a = time.perf_counter()
-    print(dat.getfunc(153.0277, -27.4777)(2))
-    print(f"Took {time.perf_counter() - a} seconds")
+    func = dat.getfunc(long, lat)
+    sum = 0
+
+    for i in [1, 2, 3, 4, 5, 10]:
+        years = round(func(i))
+        out.append(years)
+        sum += years
+
+    print(sum)
+
+    try:
+        out.append(round(linsample([6,60000,100000,300000,400000,599999],[10,8,6,4,2,0],[sum, sum, 1])[0], 2))
+    except IndexError:
+        out.append(10)
+
+    print(out[-1])
+
+    return out
+
+if __name__ == "__main__":
+    years = 3000
+    print(round(linsample([6,60000,100000,300000,400000,500000],[10,8,6,4,2,0],[years, years, 1])[0], 2))
