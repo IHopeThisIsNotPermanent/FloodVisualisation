@@ -19,6 +19,10 @@ def guide():
 def resources():
     return render_template("header.html") + render_template("resources.html")
 
+@app.route("/about")
+def about():
+    return render_template("header.html") + render_template("about.html")
+
 # Returns just a folium map HTML representation
 # Called as an iframe most of the time
 @app.route("/_map", methods=["GET"])
