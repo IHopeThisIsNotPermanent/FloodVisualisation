@@ -9,10 +9,10 @@ Mitchell Clarke
 Saul Rathbone-Boschis  
 Yijia Zhang  
 
-# Dependencies
+# Installing Dependencies
 This was tested and run on Python 3.10  
-Dependencies:  
-matplotlib numpy pandas folium branca scipy geojsoncontour geopy flask  
+Installing Dependencies:
+`(your python command) -m pip install matplotlib numpy pandas folium branca scipy geojsoncontour geopy flask`
 
 # Running
 Clone this repository  
