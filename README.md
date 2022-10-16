@@ -11,7 +11,7 @@ Yijia Zhang
 
 # Installing Dependencies
 This was tested and run on Python 3.10  
-Installing Dependencies:
+Installing Dependencies:  
 `(your python command) -m pip install matplotlib numpy pandas folium branca scipy geojsoncontour geopy flask`
 
 # Running
