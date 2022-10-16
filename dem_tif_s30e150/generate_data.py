@@ -27,6 +27,8 @@ def years_to_weight(years):
 """
     make_contour_map(jsonFile):
         jsonFile: relative filename to JSON file containing [lat, long, risk] data
+    Method adapted from github user tjansson60
+    https://github.com/python-visualization/folium/issues/958#issuecomment-427156672
 """
 def make_contour_map(jsonFile):
     # Variables to rewrite file for flask
