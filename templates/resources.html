@@ -1,11 +1,46 @@
-<!DOCTYPE html>
-<html>
+<!-- Custom styles for this template -->
+<link href="{{url_for('static', filename='global.css')}}" rel="stylesheet">
 <body>
-<body>
-  <section>
-    <h1>Resources</h1>
-    <h2>*insert lots of links to various flood resources here*</h2>
-  </section>
-</html>
+
+<main>
+	<h1 class="display-2 fw-bold text-center">Understanding River Catchments</h1><br>
+  <h3 class="font-weight-normal text-left">
+    This is a video provided by the Queensland Government to better understand river catchments.<br>
+  </h3>
+  <div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item mx-auto d-block" width="560" height="315" src="https://www.youtube-nocookie.com/embed/BDdhbuSbkds" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <br>
+
+<div class="b-example-divider"></div>
+<h1 class="display-2 fw-bold text-center">Brisbane Residents Flooding Support</h1><br>
+<div class="mx-auto">
+	<h3 class="font-weight-normal text-left">
+		The Brisbane City Council has provided helpful flooding information, including specific information for what to do during a flood.<br>
+    <br>
+			<img src="{{url_for('static', filename='council_flood_instructions.png')}}" class="img-fluid border rounded-3 shadow-lg mb-4 mx-auto d-block" alt="Instructions for during flooding" width="700" height="500" loading="lazy"><br>
+		<a href="https://www.brisbane.qld.gov.au/community-and-safety/community-safety/disasters-and-emergencies/be-prepared/flooding-in-brisbane/flooding-support-for-residents">https://www.brisbane.qld.gov.au/community-and-safety/community-safety/disasters-and-emergencies/be-prepared/flooding-in-brisbane/flooding-support-for-residents</a><br>
+	</h3>
+</div>
+<div class="b-example-divider"></div>
+<h1 class="display-2 fw-bold text-center">Flood Resources for Residents & Businesses</h1><br>
+<div class="mx-auto">
+	<h3 class="font-weight-normal text-left">
+		Another Brisbane City Council resource, this one contains information for both residents and businesses. It also includes information about financial programs for those impacted by floods.<br>
+		<br>
+    <a href="https://www.sustainablebrisbane.com.au/floodresources/">https://www.sustainablebrisbane.com.au/floodresources/</a><br>
+	</h3>
+	<div class="b-example-divider"></div>
+</div>
+<h1 class="display-2 fw-bold text-center">Flood Resilient Homes Program</h1><br>
+<div class="mx-auto">
+	<h3 class="font-weight-normal text-left">
+		This program is being trialled in some areas of Brisbane. It involves a free in-home flood resilience assessment, recommendations to increase flood resilience and an incentive scheme to make the recommened renovations.<br>
+		<br>
+    <a href="https://www.sustainablebrisbane.com.au/programs/floodwise/">https://www.sustainablebrisbane.com.au/programs/floodwise/</a>
+	</h3><br>
+</div>
+<div class="b-example-divider"></div>
+</main>
 </body>
 </html>

@@ -1,19 +1,56 @@
-<!DOCTYPE html>
-<html>
 <!-- Custom styles for this template -->
 <link href="{{url_for('static', filename='global.css')}}" rel="stylesheet">
 <body>
-<body>
-	<section>
-		<h1 class="display-4 fw-bold text-center">How to use this tool</h1>
+
+<main>
+    <h1 class="display-2 fw-bold text-center">Notice</h1>
+    <div class="mx-auto">
+			<h3 class="font-weight-normal text-left">
+				Flood-iction is a tool which is intended for use to <b>prepare</b> for flooding.<br>
+				It is not a tool which provides real-time updates in the event of flooding.<br>
+				For real-time updates during flooding, use appropriate government and council resources for live updates and instruction.<br>
+				Currently, Flood-iction is only capably of analysing flooding that results from the Brisbane River overflowing.
+			</h3>
+		</div>
+  <div class="b-example-divider"></div>
+	<h1 class="display-2 fw-bold text-center">1. Enter Location into the Risk Calculator</h1>
+	<div class="mx-auto">
+		<h3 class="font-weight-normal text-left">
+			Use the <a href="/manual">Risk Calculator</a> page to enter a location.<br>
+			<br>
+				<img src="{{url_for('static', filename='location_entry.jpg')}}" class="img-fluid border rounded-3 shadow-lg mb-4 mx-auto d-block" alt="Location Entry Page" width="700" height="500" loading="lazy"><br>
+			You can either attempt to search an address or use the provided map to find and click on the location.<br>
+		</h3>
+	</div>
+<div class="b-example-divider"></div>
+<h1 class="display-2 fw-bold text-center">2. View Flood Risk Map</h1>
+<div class="mx-auto">
+	<h3 class="font-weight-normal text-left">
+		Once you have entered a valid locaiton, you will be presented with a results page. This page contains an overall flood risk score as well as additional data to help you understand the flood risk.<br>
 		<br>
-		<p class="lead mb-4 text-center">Enter address</p>
-		<p class="lead mb-4 text-center">See flood risk score</p>
-		<p class="lead mb-4 text-center">Use interactive map to check your area</p>
-		<p class="lead mb-4 text-center">Make a flood plan with this information</p>
-		<p class="lead mb-4 text-center">It's as shrimple as that</p>
-		<img id="guide-shrimp" src="https://cdn.britannica.com/44/4144-004-43DD2776/Peneus-setiferus.jpg">
-	</section>
-</html>
+			<img src="{{url_for('static', filename='map_example.png')}}" class="img-fluid border rounded-3 shadow-lg mb-4 mx-auto d-block" alt="Flood Risk Map Example Result" width="700" height="500" loading="lazy"><br>
+		The first is a map. This map visualizes the flood risk at and around your location for a flood height of 1 meter. This can be used to note what is and isn't likely to flood, such as roads, or pathways.<br>
+	</h3>
+</div>
+<div class="b-example-divider"></div>
+<h1 class="display-2 fw-bold text-center">3. View Additional Information</h1>
+<div class="mx-auto">
+	<h3 class="font-weight-normal text-left">
+		In addition to the map, Flood-iction provides a more specific breakdown about the flood risk at various water heights.<br>
+		<br>
+			<img src="{{url_for('static', filename='table_example.png')}}" class="img-fluid border rounded-3 shadow-lg mb-4 mx-auto d-block" alt="Location Entry Page" width="700" height="500" loading="lazy"><br>
+		This table can help anticipate how much flood water to expect. Decisions such as where best to store belongings to avoid damage, or whether or not performing renovations to raise a building can benefit from this information.<br>
+	</h3>
+	<div class="b-example-divider"></div>
+</div>
+<h1 class="display-2 fw-bold text-center">4. Make a Flood Plan</h1>
+<div class="mx-auto">
+	<h3 class="font-weight-normal text-left">
+		Equipped with some specific flood risk knowledge, it is time to prepare.<br>
+		The <a href="/resources">Resources</a> page contains additional flood resources provided by the council and government.<br>
+	</h3>
+</div>
+<div class="b-example-divider"></div>
+</main>
 </body>
 </html>
