@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, url_for
 import folium
-from folium import GeoJson, plugins
-from folium.plugins import HeatMap
+from folium import GeoJson
 import geopy
 from functions import *
 
