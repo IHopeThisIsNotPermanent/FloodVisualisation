@@ -80,12 +80,12 @@ def generate_table(lat, long):
     try:
         out.append(round(linsample([6,60000,100000,300000,400000,599999],[10,8,6,4,2,0],[sum, sum, 1])[0], 2))
     except IndexError:
-        out.append(10)
+        out.append(0)
 
     print(out[-1])
 
     return out
 
 if __name__ == "__main__":
-    years = 3000
+    years = 1000
     print(round(linsample([6,60000,100000,300000,400000,500000],[10,8,6,4,2,0],[years, years, 1])[0], 2))
