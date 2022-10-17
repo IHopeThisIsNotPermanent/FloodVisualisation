@@ -7,8 +7,11 @@
 </section>
 <div class="col-lg-6 mx-auto mb-5 text-center">
     <h1 class="display-4 fw-bold">{% if reason != "none" %}Re-{% endif %}Enter Your Address</h1>
-    {% if reason != "none" %}
-    <h2 class="font-weight-normal">If you believe there was an error in the previous search, you can re-enter your address.</h2><br>
+    {% if reason == "bounds" %}
+    <h2 class="font-weight-normal">Sorry, but the address you provided is outside the bounds of our model. On the map below you can see the bounds.</h2><br>
+    {% endif %}
+    {% if  reason == "failed" %}
+    <h2 class="font-weight-normal">There was an error in the previous search. You can try to re-enter your address or use the map provided below.</h2><br>
     {% endif %}
     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
       <form method = "post" action = "/results">
