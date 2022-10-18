@@ -20,7 +20,7 @@ def inbounds(x, y):
     return False
 
 def address_lookup(term):
-    locator = Nominatim(user_agent="addressLookup")
+    locator = Nominatim(user_agent="Flood-iction")
     result = locator.geocode(term)
 
     # Didn't find address
