@@ -15,7 +15,17 @@
 	<div class="px-4 pt-5 my-5 ">
 		<h1 class="display-4 fw-bold text-center">Flood Prediction Model</h1>
 		<div class="mx-auto">
-			<h3 class="font-weight-normal text-left">The model is a model.</h3>
+			<h3 class="font-weight-normal text-left">
+        Flood-iction is built upon the concept of a model. At the moment this model is only capable of one form of analysis - when the Brisbane River overflows.<br>
+        When given a location, it finds the height of this point using (reference????) and then provides what frequency a flood event that can flood this area would occur in.<br>
+        For example, a location that is just 0.5m above the Brisbane River and adjacent to it would flood more frequently than one which is 20m above the river and 1km away.<br>
+        In the future we plan to update this to include other kinds of analysis and give a weighted flood risk score considering these factors. For example:<br>
+        <ul>
+          <li>Flooding due to releases from the Wivenhoe Dam</li>
+          <li>Flooding due to rainfall in various amounts and time periods</li>
+          <li>Flooding due to tidal changes such as <a href="https://www.msq.qld.gov.au/Tides/King-tides">King Tides</a></li>
+        </ul>
+      </h3>
 		</div>
 	</div>
 	<div class="b-example-divider"></div>
@@ -29,7 +39,7 @@
 				<img src="{{url_for('static', filename='map_example.png')}}" class="img-fluid border rounded-3 shadow-lg mb-4 mx-auto d-block" alt="Interactive Risk Visualization Map" width="700" height="500" loading="lazy"><br>
 				After the user provides an address or location to search, the result is displayed on a map. This map is created by using a library called <a href="http://python-visualization.github.io/folium/">Folium</a>, which creates a <a href="https://leafletjs.com">Leaflet</a> map.<br>
 				On top of this map is a Contour map, typically used to notate changes in terrain height. Here it is not height being displayed, but instead flood risk.<br>
-				The model is able to predict what severity flood would be needed to have a certain flood height. This is fit on a linear scale to give the risk show on the map.<br><br>
+				The model is able to predict what severity flood would be needed to have a certain flood height. This is fit on a linear scale to give the risk shown on the map.<br><br>
 				<img src="{{url_for('static', filename='table_example.png')}}" class="img-fluid border rounded-3 shadow-lg mb-4 mx-auto d-block" alt="Flood Height Table" width="700" height="500" loading="lazy"><br>
 				Some of this data is also given to the user in table form for various flood height levels.
 			</h3>
@@ -44,7 +54,9 @@
 				To provide specific flood information about a given location, Flood-iction needs to find where that is on a map.<br>
 				Luckily there is an existing Python library that does just this. The <a href="https://geopy.readthedocs.io/en/stable/">GeoPy<a> library containers dozens of GeoCoders - APIs that turn an address "e.g. 123 John Street" or a description "e.g. Brisbane Children's Hospital" into map co-ordinates.<br>
 				In particular, Flood-iction uses <a href="https://nominatim.org">Nominatim</a>. Nominatim uses open source data from the <a href="https://www.openstreetmap.org">OpenStreetMap Project</a> to produce co-ordinates.<br>
-				This open source data is not perfect - but in and around the Brisbane City area, most of the data is complete and accurate.
+				This open source data is not perfect - but in and around the Brisbane City area, most of the data is complete and accurate.<br>
+        <br>
+        In no uncertain terms: Flood-iction does <b>not</b> actively seek out any user data that isn't supplied, such as by attempting to locate the user by their IP Address. Any addresses or locations that Flood-iction is provided by the user are <b>not</b> stored persistently, nor is it provided to any third parties.
 			</h3>
 		</div>
 	</div>
