@@ -47,23 +47,30 @@ class grid:
 
         lat *= -1
 
+        dists = []
+
         for x in grid.river_pos:
             dist = math.sqrt((lat-x[0])**2 + (long-x[1])**2)
             # print(dist)
             if dist <= 0.03:
-                return True
-        return False
+                dists.append(dist)
+        if len(dists) == 0:
+            return 2
+        return min(dists)
 
     def getfunc(self, long, lat):
         """
         This function is used to get the flood rust function given a point
         """
 
-        if not self.check_in_bounds(long, lat):
+        dist = self.check_in_bounds(long, lat)
+        if dist == 2:
             return lambda x: 100000
+        
+        dist_diff = 20+40*((math.exp(250*(dist-0.028)))/(1+math.exp(250*(dist-0.028)))-0.5)
 
         #assuming brisbane river is 4m above sea level
-        difference = self.getpos(long, lat)-4
+        difference = self.getpos(long, lat)-4 + dist_diff
         return lambda x: 100000 if x + difference > 23.7 else 0 if x + difference < 1.6 else linsample(grid.x_vals, grid.y_vals, [x + difference,x + difference,1])[0]
 
 def get_quads():
@@ -132,8 +139,23 @@ def linsample(x_vals, y_vals, arange):
 
     return out
 
+def disp(modl):
+    TL_BOUND = [-27.3773, 152.9029]
+    BR_BOUND = [-27.5990, 153.2002]
+    long_dist = BR_BOUND[0] - TL_BOUND[0]
+    lat_dist = BR_BOUND[1] - TL_BOUND[1]
+    
+    ret = np.zeros([100,100])
+    
+    for long in range(100):
+        for lat in range(100):
+            pos = TL_BOUND[0] +long_dist*(long/100), TL_BOUND[1] +lat_dist*(lat/100)
+            ret[long,lat] = modl.getfunc(pos[1],pos[0])(2)
+    plt.imshow(ret)
 
 
 if __name__ == "__main__":
     dat = grid()
+    #disp(dat)
     print(dat.getfunc(153.0277, -27.4777)(2))
+
