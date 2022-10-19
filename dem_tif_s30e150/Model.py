@@ -47,16 +47,18 @@ class grid:
 
         lat *= -1
 
-        dists = []
+        #dists = []
 
         for x in grid.river_pos:
             dist = math.sqrt((lat-x[0])**2 + (long-x[1])**2)
             # print(dist)
             if dist <= 0.03:
-                dists.append(dist)
-        if len(dists) == 0:
-            return 2
-        return min(dists)
+                return True
+                #dists.append(dist)
+        #if len(dists) == 0:
+        #    return 2
+        #return min(dists)
+        return False
 
     def getfunc(self, long, lat):
         """
@@ -64,13 +66,13 @@ class grid:
         """
 
         dist = self.check_in_bounds(long, lat)
-        if dist == 2:
+        if not dist:
             return lambda x: 100000
-        
-        dist_diff = 20+40*((math.exp(250*(dist-0.028)))/(1+math.exp(250*(dist-0.028)))-0.5)
+
+        #dist_diff = 5+10*((math.exp(250*(dist-0.05)))/(1+math.exp(250*(dist-0.05)))-0.5)
 
         #assuming brisbane river is 4m above sea level
-        difference = self.getpos(long, lat)-4 + dist_diff
+        difference = self.getpos(long, lat)-4
         return lambda x: 100000 if x + difference > 23.7 else 0 if x + difference < 1.6 else linsample(grid.x_vals, grid.y_vals, [x + difference,x + difference,1])[0]
 
 def get_quads():
@@ -144,9 +146,9 @@ def disp(modl):
     BR_BOUND = [-27.5990, 153.2002]
     long_dist = BR_BOUND[0] - TL_BOUND[0]
     lat_dist = BR_BOUND[1] - TL_BOUND[1]
-    
+
     ret = np.zeros([100,100])
-    
+
     for long in range(100):
         for lat in range(100):
             pos = TL_BOUND[0] +long_dist*(long/100), TL_BOUND[1] +lat_dist*(lat/100)
@@ -158,4 +160,3 @@ if __name__ == "__main__":
     dat = grid()
     #disp(dat)
     print(dat.getfunc(153.0277, -27.4777)(2))
-

@@ -16,8 +16,10 @@
 		<h1 class="display-4 fw-bold text-center">Flood Prediction Model</h1>
 		<div class="mx-auto">
 			<h3 class="font-weight-normal text-left">
-        Flood-iction is built upon the concept of a model. At the moment this model is only capable of one form of analysis - when the Brisbane River overflows.<br>
-        When given a location, it finds the height of this point using (reference????) and then provides what frequency a flood event that can flood this area would occur in.<br>
+        There are 3 main factors to consider when simulating flooding, Overland flow, storm tides, and river/creek hights.
+        Flood-iction, in its current state only considers the case where flooding occurs due to river height.
+        We determine a locations risk factor by getting its eleation from the <a href="http://hydro.iis.u-tokyo.ac.jp/~yamadai/MERIT_DEM/">MERIT DEM</a> dataset, then using the distribution given from <a href="https://www.publications.qld.gov.au/dataset/brisbane-river-catchment-flood-study/resource/a251f9e8-35a3-4528-9a94-5db527917351">QLDGOV HYDROLICS REPORT</a>.
+        Calculating the risk factor is pretty straight forward from here. <br>
         For example, a location that is just 0.5m above the Brisbane River and adjacent to it would flood more frequently than one which is 20m above the river and 1km away.<br>
         In the future we plan to update this to include other kinds of analysis and give a weighted flood risk score considering these factors. For example:<br>
         <ul>
